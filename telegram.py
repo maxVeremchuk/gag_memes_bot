@@ -19,11 +19,11 @@ def send_photo():
     bot.send_photo(chat_id, img_path, reply_markup=markup, caption=img_path)
     return bot
 
+
 @bot.callback_query_handler(func=lambda call: True)
 def message_reply(call):
-    #bot.send_mesaage(chat_id, )
-    bot.edit_message_media(message_id=call.message.message_id, chat_id=chat_id, media=telebot.types.InputMediaPhoto("https://img-9gag-fun.9cache.com/photo/aGzReY7_460s.jpg"))
     img_path = call.message.caption
+    bot.edit_message_media(message_id=call.message.message_id, chat_id=chat_id, media=telebot.types.InputMediaPhoto(img_path))
     if call.data == "post":
         bot.send_photo(chat_id_product, img_path)
 
@@ -31,5 +31,3 @@ send_photo()
 
 bot.infinity_polling()
 
-#https://img-9gag-fun.9cache.com/photo/aGzReY7_460s.jpg
-#img_scrape.get_new_img()
